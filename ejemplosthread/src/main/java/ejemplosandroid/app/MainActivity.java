@@ -3,20 +3,25 @@ package ejemplosandroid.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements Runnable {
     ProgressBar pb ;
     Thread hilo;
-
+    Handler h;
+    TextView texto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        pb = findViewById(R.id.progressBar);
-
+        h = new Handler();
+        texto= findViewById(R.id.textView);
     }
     public void run(){
         pb.setProgress(0);
@@ -38,4 +43,5 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     public void saluda ( View v){
         Toast.makeText(this, "Hola Mundo!", Toast.LENGTH_LONG).show();
     }
+
 }
