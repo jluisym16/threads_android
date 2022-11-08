@@ -16,3 +16,4 @@ rootProject.name = "ejemplosandroid"
 include ':ejemplosthread'
 include ':ejemploanytask'
 include ':ejemplohandler'
+include ':ejemplohandlerthread'

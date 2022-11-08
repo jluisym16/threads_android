@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public void tarea(View v)throws InterruptedException{
         hilo= new HiloConsumidor();
         hilo.start();
-        hilo.getHandler();
+        h = new Handler(hilo.getHandler());
     }
     public void saluda ( View v){
         Toast.makeText(this, "Hola Mundo!", Toast.LENGTH_LONG).show();
@@ -33,25 +33,27 @@ public class MainActivity extends AppCompatActivity {
     }
     static class HiloConsumidor extends Thread{
         Handler handler;
-
         public synchronized Handler getHandler() {
-            while (handler ==null) {
+            while (hander ==null) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            return handler;
+            return looper;
         }
 
         public void run(){
-            Looper.prepare();
+            Looper.prepare();//además se crea una message queue
             synchronized (this){
-
+                looper= Looper.myLooper();
+            /*
                 handler= new Handler(
                         Looper.myLooper()//se usa el mylooper para poder escoger el hilo
-                );}
+                )*/
+                ;}
+             */
             Looper.loop();
         }
     }
